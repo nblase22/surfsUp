@@ -70,7 +70,7 @@ def pcrp():
     today = datetime.datetime.today()
     today = today.date()
     last_year = today - datetime.timedelta(365)
-    pcp_year = session.query(Measurement.date, Measurement.prcp, Measurement.tobs).filter(and_(Measurement.date <= today, Measurement.date >= last_year)).all()
+    pcp_year = session.query(Measurement.date, Measurement.prcp).filter(and_(Measurement.date <= today, Measurement.date >= last_year)).all()
     return jsonify(pcp_year)
 
 @app.route("/api/v1.0/stations")
@@ -93,8 +93,8 @@ def temp_year():
 
 @app.route("/api/v1.0/<start>")
 def start_temp(start):
-    # get the min/max/avg
-    temp_data = session.query(func.max(Measurement.tobs), func.min(Measurement.tobs), func.avg(Measurement.tobs)).filter(Measurement.date >= start).all()
+    # get the min/avg/max
+    temp_data = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).filter(Measurement.date >= start).all()
     
     return jsonify(temp_data)
 
@@ -102,8 +102,8 @@ def start_temp(start):
 
 @app.route("/api/v1.0/<start>/<end>")
 def range_temp(start, end):
- # get the min/max/avg
-    temp_data = session.query(func.max(Measurement.tobs), func.min(Measurement.tobs), func.avg(Measurement.tobs)).filter(and_(Measurement.date >= start, Measurement.date <= end)).all()
+ # get the min/avg/max
+    temp_data = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).filter(and_(Measurement.date >= start, Measurement.date <= end)).all()
     
     return jsonify(temp_data)
 
