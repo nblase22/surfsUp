@@ -1,2 +1,12 @@
 # surfsUp
-Homework 11 Data Vis bootcamp
+Climate analysis of a Hawaii weather dataset.
+
+Requirements:
+
+Pandas
+os
+datetime
+matplotlib
+mumpy
+time
+datadotworld
