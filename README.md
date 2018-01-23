@@ -4,9 +4,16 @@ Climate analysis of a Hawaii weather dataset. Created plots for temperature and 
 Requirements:
 
 Pandas
+
 os
+
 datetime
+
 matplotlib
+
 mumpy
+
 time
+
 datadotworld
+
